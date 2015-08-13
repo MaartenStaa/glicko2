@@ -65,3 +65,19 @@ foreach (array($player1, $player2, $player3) as $index => $player) {
 		$player->getRatingDeviation(), ', ', $player->getVolatility(), PHP_EOL;
 }
 ```
+
+## Contributing
+
+### Coding standard
+
+All code is to follow the [PSR-2][4] coding standard.
+
+### Unit tests
+
+If you find a bug, feel free to send a pull request to fix it, but make sure to
+always include a regression test.
+
+[1]: https://travis-ci.org/MaartenStaa/glicko2
+[2]: https://scrutinizer-ci.com/g/MaartenStaa/glicko2/?branch=master
+[3]: https://scrutinizer-ci.com/g/MaartenStaa/glicko2/?branch=master
+[4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
