@@ -30,8 +30,7 @@ class RatingPeriodResults
     {
         $this->results[] = new Result($winner, $loser);
     }
-    
-    
+
     /**
      * Record a draw between two players and add to the set.
      *
@@ -42,8 +41,7 @@ class RatingPeriodResults
     {
         $this->results[] = new Result($player1, $player2, true);
     }
-    
-    
+
     /**
      * Get a list of the results for a given player.
      *
@@ -63,7 +61,6 @@ class RatingPeriodResults
         return $filteredResults;
     }
 
-    
     /**
      * Get all the participants whose results are being tracked.
      *
@@ -73,12 +70,13 @@ class RatingPeriodResults
     {
         // Run through the results and make sure all players have been pushed into the participants set.
         foreach ($this->results as $result) {
-            $this->participants[] = $result->getWinner();
-            $this->participants[] = $result->getLoser();
+            if (in_array($result->getWinner(), $this->participants, true) === false) {
+                $this->participants[] = $result->getWinner();
+            }
+            if (in_array($result->getLoser(), $this->participants, true) === false) {
+                $this->participants[] = $result->getLoser();
+            }
         }
-
-        // Remove duplicates.
-        $this->participants = array_unique($this->participants);
 
         return $this->participants;
     }
@@ -89,7 +87,7 @@ class RatingPeriodResults
      *
      * @param rating
      */
-    public function addParticipants(Rating $rating)
+    public function addParticipant(Rating $rating)
     {
         $this->participants[] = $rating;
     }

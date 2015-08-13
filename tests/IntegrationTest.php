@@ -37,7 +37,7 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $this->player3->setRatingDeviation(100);
         $this->player4->setRatingDeviation(300);
 
-        $this->results->addParticipants($this->player5);  // the other players will be added to the participants list automatically
+        $this->results->addParticipant($this->player5);  // the other players will be added to the participants list automatically
     }
     
     /**
