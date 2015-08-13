@@ -1,0 +1,27 @@
+{
+    "name": "maartenstaa/glicko2",
+    "description": "PHP implementation of the Glicko-2 rating algorithm",
+    "keywords": [],
+    "type": "library",
+    "license": "BSD-3-Clause",
+    "require-dev": {
+        "phpunit/phpunit": "~4"
+    },
+    "authors": [
+        {
+            "name": "Maarten Staa",
+            "email": "maartenstaa@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "MaartenStaa\\Glicko2\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MaartenStaa\\Glicko2\\": "tests/"
+        }
+    }
+}
