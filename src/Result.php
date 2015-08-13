@@ -94,7 +94,7 @@ class Result
      */
     public function getOpponent(Rating $player)
     {
-        $opponent;
+        $opponent = null;
         
         if ($this->winner === $player) {
             $opponent = $this->loser;
