@@ -23,8 +23,8 @@ class RatingPeriodResults
     /**
      * Add a result to the set.
      *
-     * @param Rating winner
-     * @param Rating loser
+     * @param Rating $winner
+     * @param Rating $loser
      */
     public function addResult(Rating $winner, Rating $loser)
     {
@@ -34,8 +34,8 @@ class RatingPeriodResults
     /**
      * Record a draw between two players and add to the set.
      *
-     * @param Rating player1
-     * @param Rating player2
+     * @param Rating $player1
+     * @param Rating $player2
      */
     public function addDraw(Rating $player1, Rating $player2)
     {
@@ -45,8 +45,8 @@ class RatingPeriodResults
     /**
      * Get a list of the results for a given player.
      *
-     * @param player
-     * @return List of results
+     * @param  Rating $player
+     * @return array          List of results.
      */
     public function getResults(Rating $player)
     {
@@ -85,7 +85,7 @@ class RatingPeriodResults
      * Add a participant to the rating period, e.g. so that their rating will
      * still be calculated even if they don't actually compete.
      *
-     * @param rating
+     * @param Rating $rating
      */
     public function addParticipant(Rating $rating)
     {

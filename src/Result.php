@@ -68,8 +68,6 @@ class Result
      */
     public function getScore(Rating $player)
     {
-        $score = 0;
-        
         if ($this->winner === $player) {
             $score = static::POINTS_FOR_WIN;
         } elseif ($this->loser === $player) {
@@ -94,8 +92,6 @@ class Result
      */
     public function getOpponent(Rating $player)
     {
-        $opponent = null;
-        
         if ($this->winner === $player) {
             $opponent = $this->loser;
         } elseif ($this->loser === $player) {

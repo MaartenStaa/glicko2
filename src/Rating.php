@@ -83,11 +83,21 @@ class Rating
         $this->rating = $this->ratingSystem->convertRatingToOriginalGlickoScale($rating);
     }
 
+    /**
+     * Get the player's volatility.
+     *
+     * @return float
+     */
     public function getVolatility()
     {
         return $this->volatility;
     }
 
+    /**
+     * Set the player's volatility.
+     *
+     * @param float $volatility
+     */
     public function setVolatility($volatility)
     {
         $this->volatility = $volatility;

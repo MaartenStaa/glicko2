@@ -201,9 +201,9 @@ class RatingCalculator
     /**
      * This is a formula as per step 4 of Glickman's paper.
      *
-     * @param player
-     * @param results
-     * @return delta
+     * @param  Rating $player
+     * @param  array  $results
+     * @return float           Delta.
      */
     protected function delta(Rating $player, array $results)
     {
