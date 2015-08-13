@@ -68,7 +68,7 @@ class Result
      */
     public function getScore(Rating $player)
     {
-        $score;
+        $score = 0;
         
         if ($this->winner === $player) {
             $score = static::POINTS_FOR_WIN;
