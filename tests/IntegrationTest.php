@@ -31,13 +31,13 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $this->player2->setRating(1400);
         $this->player3->setRating(1550);
         $this->player4->setRating(1700);
+        $this->player5->setRating(1500);
         
         $this->player1->setRatingDeviation(200);
         $this->player2->setRatingDeviation(30);
         $this->player3->setRatingDeviation(100);
         $this->player4->setRatingDeviation(300);
-
-        $this->results->addParticipant($this->player5);  // the other players will be added to the participants list automatically
+        $this->player5->setRatingDeviation(350); // default
     }
     
     /**
@@ -50,9 +50,15 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $this->player1->getGlicko2Rating(), '', 0.00001);
         $this->assertEquals(1.1513, $this->player1->getGlicko2RatingDeviation(), '', 0.00001);
 
-        $this->results->addResult($this->player1, $this->player2); // player1 beats player 2
-        $this->results->addResult($this->player3, $this->player1); // player3 beats player 1
-        $this->results->addResult($this->player4, $this->player1); // player4 beats player 1
+        // the other players will be added to the participants list automatically
+        $this->results->addParticipant($this->player5);
+
+        // player1 beats player 2
+        $this->results->addResult($this->player1, $this->player2);
+        // player3 beats player 1
+        $this->results->addResult($this->player3, $this->player1);
+        // player4 beats player 1
+        $this->results->addResult($this->player4, $this->player1);
         
         $this->ratingSystem->updateRatings($this->results);
         
@@ -65,5 +71,21 @@ class IntegrationTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->ratingSystem->getDefaultRating(), $this->player5->getRating(), 'rating should be unaffected');
         $this->assertTrue($this->ratingSystem->getDefaultRatingDeviation() < $this->player5->getRatingDeviation(), 'rating deviation should have grown');
         $this->assertEquals($this->ratingSystem->getDefaultVolatility(), $this->player5->getVolatility(), 'volatility should be unaffected');
+    }
+
+    /**
+     * Ensure we handle draws correctly.
+     */
+    public function testDraw()
+    {
+        // These players have the same rating, but different RD.
+        $this->results->addDraw($this->player1, $this->player5);
+
+        $this->ratingSystem->updateRatings($this->results);
+
+        $this->assertEquals(1500, $this->player1->getRating(), '', 0.01);
+        $this->assertEquals(1500, $this->player5->getRating(), '', 0.01);
+        $this->assertLessThan(200, $this->player1->getRatingDeviation(), 'rating deviation should have shrunk');
+        $this->assertLessThan(350, $this->player5->getRatingDeviation(), 'rating deviation should have shrunk');
     }
 }
